@@ -9,7 +9,6 @@ import android.graphics.Rect;
 import android.graphics.Typeface;
 import android.os.Handler;
 import android.util.AttributeSet;
-import android.util.Log;
 import android.view.GestureDetector;
 import android.view.Gravity;
 import android.view.MotionEvent;
@@ -340,7 +339,7 @@ public class WheelView extends View
         }
         catch (ArithmeticException e)
         {
-            Log.e("WheelView", "出错了！adapter.getItemsCount() == 0，联动数据不匹配");
+            e.printStackTrace();
         }
         if (!isLoop)
         {//不循环的情况
