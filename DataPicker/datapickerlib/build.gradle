@@ -17,18 +17,18 @@ android {
 }
 
 dependencies {
-    compile fileTree(dir: 'libs', include: ['*.jar'])
-    testCompile 'junit:junit:4.12'
-    compile 'com.android.support:appcompat-v7:26.1.0'
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    testImplementation 'junit:junit:4.12'
+    implementation 'com.android.support:appcompat-v7:26.1.0'
 }
 
 apply plugin: 'maven'
 
 ext {
-    GITHUB_REPO_PATH = "E:\\AndroidStudioProjects\\MyProjects\\DataPickerRepository"
+    GITHUB_REPO_PATH = "E:\\AndroidStudioWorkSpace\\DataPicker"
     PUBLISH_GROUP_ID = 'xujianjie'
     PUBLISH_ARTIFACT_ID = 'datapicker'
-    PUBLISH_VERSION = '1.0.0'
+    PUBLISH_VERSION = '1.1.0'
 }
 
 uploadArchives {

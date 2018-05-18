@@ -18,8 +18,7 @@ import xujianjie.datapickerlib.utils.PickerViewAnimateUtil;
 public class BasePickerView
 {
     private final FrameLayout.LayoutParams params = new FrameLayout.LayoutParams(
-            ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT, Gravity.BOTTOM
-    );
+            ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT, Gravity.BOTTOM);
 
     private Context context;
     protected ViewGroup contentContainer;
@@ -43,25 +42,23 @@ public class BasePickerView
         initEvents();
     }
 
-    protected void initViews()
+    private void initViews()
     {
         LayoutInflater layoutInflater = LayoutInflater.from(context);
-        decorView = (ViewGroup) ((Activity) context).getWindow().getDecorView().findViewById(android.R.id.content);
+        decorView = ((Activity) context).getWindow().getDecorView().findViewById(android.R.id.content);
         rootView = (ViewGroup) layoutInflater.inflate(R.layout.pickerview_base, decorView, false);
-        rootView.setLayoutParams(new FrameLayout.LayoutParams(
-                ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT
-        ));
-        contentContainer = (ViewGroup) rootView.findViewById(R.id.content_container);
+        rootView.setLayoutParams(new FrameLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
+        contentContainer = rootView.findViewById(R.id.content_container);
         contentContainer.setLayoutParams(params);
     }
 
-    protected void init()
+    private void init()
     {
         inAnim = getInAnimation();
         outAnim = getOutAnimation();
     }
 
-    protected void initEvents()
+    private void initEvents()
     {
     }
 
@@ -95,12 +92,12 @@ public class BasePickerView
      *
      * @return 如果视图已经存在该View返回true
      */
-    public boolean isShowing()
+    private boolean isShowing()
     {
         return rootView.getParent() != null || isShowing;
     }
 
-    public void dismiss()
+    protected void dismiss()
     {
         if (dismissing)
         {
@@ -140,7 +137,7 @@ public class BasePickerView
         contentContainer.startAnimation(outAnim);
     }
 
-    public void dismissImmediately()
+    private void dismissImmediately()
     {
         //从activity根视图移除
         decorView.removeView(rootView);
@@ -153,13 +150,13 @@ public class BasePickerView
 
     }
 
-    public Animation getInAnimation()
+    private Animation getInAnimation()
     {
         int res = PickerViewAnimateUtil.getAnimationResource(this.gravity, true);
         return AnimationUtils.loadAnimation(context, res);
     }
 
-    public Animation getOutAnimation()
+    private Animation getOutAnimation()
     {
         int res = PickerViewAnimateUtil.getAnimationResource(this.gravity, false);
         return AnimationUtils.loadAnimation(context, res);
@@ -170,30 +167,6 @@ public class BasePickerView
         this.onDismissListener = onDismissListener;
         return this;
     }
-
-    /*public BasePickerView setKeyBackCancelable(boolean isCancelable) {
-        rootView.setFocusable(isCancelable);
-        rootView.setFocusableInTouchMode(isCancelable);
-        if (isCancelable) {
-            rootView.setOnKeyListener(onKeyBackListener);
-        }
-        else{
-            rootView.setOnKeyListener(null);
-        }
-        return this;
-    }
-
-    private View.OnKeyListener onKeyBackListener = new View.OnKeyListener() {
-        @Override
-        public boolean onKey(View v, int keyCode, KeyEvent event) {
-            if (keyCode == KeyEvent.KEYCODE_BACK && event.getAction() == MotionEvent.ACTION_DOWN
-                    && isShowing()){
-                dismiss();
-                return true;
-            }
-            return false;
-        }
-    } ;*/
 
     protected BasePickerView setOutSideCancelable(boolean isCancelable)
     {
@@ -210,9 +183,6 @@ public class BasePickerView
         return this;
     }
 
-    /**
-     * Called when the user touch on black overlay in order to dismiss the dialog
-     */
     private final View.OnTouchListener onCancelableTouchListener = new View.OnTouchListener()
     {
         @Override
@@ -226,7 +196,7 @@ public class BasePickerView
         }
     };
 
-    public View findViewById(int id)
+    protected View findViewById(int id)
     {
         return contentContainer.findViewById(id);
     }

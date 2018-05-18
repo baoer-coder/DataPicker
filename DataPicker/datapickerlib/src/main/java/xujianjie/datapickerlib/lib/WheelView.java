@@ -60,7 +60,7 @@ public class WheelView extends View
     int dividerColor;
 
     // 条目间距倍数
-    static final float lineSpacingMultiplier = 1.4F;
+    static final float lineSpacingMultiplier = 1.8F;
     boolean isLoop;
 
     // 第一条线Y坐标值
@@ -117,7 +117,7 @@ public class WheelView extends View
         textColorCenter = Color.parseColor("#525252");
         dividerColor = Color.parseColor("#d4d4d4");
 
-        textSize = dip2px(context, 18);//默认大小
+        textSize = dip2px(context, 14);//默认大小
         if (attrs != null)
         {
             TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.pickerView, 0, 0);
@@ -138,7 +138,7 @@ public class WheelView extends View
         gestureDetector = new GestureDetector(context, new LoopViewGestureListener(this));
         gestureDetector.setIsLongpressEnabled(false);
 
-        isLoop = true;
+        isLoop = false;
 
         totalScrollY = 0;
         initPosition = -1;
@@ -219,7 +219,7 @@ public class WheelView extends View
             {
                 maxTextWidth = textWidth;
             }
-            paintCenterText.getTextBounds("\u661F\u671F", 0, 2, rect); // 星期的字符编码（设置item高度为两个汉字高度）
+            paintCenterText.getTextBounds("\u671F\u671F", 0, 2, rect); // 星期的字符编码（设置item高度为两个汉字高度）
             int textHeight = rect.height();
             if (textHeight > maxTextHeight)
             {
@@ -353,7 +353,8 @@ public class WheelView extends View
             }
         }
         else
-        {//循环
+        {
+            //循环
             if (preCurrentIndex < 0)
             {//举个例子：如果总数是5，preCurrentIndex ＝ －1，那么preCurrentIndex按循环来说，其实是0的上面，也就是4的位置
                 preCurrentIndex = adapter.getItemsCount() + preCurrentIndex;
@@ -673,7 +674,8 @@ public class WheelView extends View
     }
 
     public int getTextWidth(Paint paint, String str)
-    {//计算文字宽度
+    {
+        //计算文字宽度
         int iRet = 0;
         if (str != null && str.length() > 0)
         {

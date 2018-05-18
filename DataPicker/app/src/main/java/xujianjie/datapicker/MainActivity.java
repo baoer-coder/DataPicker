@@ -10,10 +10,11 @@ import android.widget.Button;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import java.util.Locale;
 
-import xujianjie.datapickerlib.OptionsPickerView;
-import xujianjie.datapickerlib.TimePickerView;
+import xujianjie.datapickerlib.OptionsPicker;
+import xujianjie.datapickerlib.TimePicker;
 
 public class MainActivity extends AppCompatActivity
 {
@@ -33,17 +34,29 @@ public class MainActivity extends AppCompatActivity
             @Override
             public void onClick(View v)
             {
-                new TimePickerView.Builder(MainActivity.this, new TimePickerView.OnTimeSelectListener()
+                List<TimePicker.Type> typeList = new ArrayList<>();
+                typeList.add(TimePicker.Type.MONTH);
+                typeList.add(TimePicker.Type.DAY);
+                typeList.add(TimePicker.Type.HOUR);
+                typeList.add(TimePicker.Type.MINUTE);
+
+                TimePicker timePicker = new TimePicker(MainActivity.this, typeList);
+                timePicker.setTimeSelectListener(new TimePicker.OnTimeSelectedListener()
                 {
                     @Override
-                    public void onTimeSelect(Date date, View v)
+                    public void onTimeSelected(Date date, View v)
                     {
-                        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault());
+                        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.getDefault());
                         String selectDate = format.format(date);
 
                         Log.e("DataPicker", selectDate);
                     }
-                }).setType(TimePickerView.Type.YEAR_MONTH_DAY).setRange(2018, 2019).setColor(Color.parseColor("#ff0000")).build().show();
+                });
+                timePicker.setTextSize(16);
+                timePicker.setStartYear(2018);
+                timePicker.setEndYear(2019);
+                timePicker.setColor(Color.parseColor("#ff0000"));
+                timePicker.show();
             }
         });
 
@@ -61,23 +74,26 @@ public class MainActivity extends AppCompatActivity
                 list.add("选项6");
                 list.add("选项7");
 
-                OptionsPickerView optionsPickerView = new OptionsPickerView.Builder(MainActivity.this, new OptionsPickerView.OnOptionsSelectListener()
+                OptionsPicker optionsPicker = new OptionsPicker(MainActivity.this);
+                optionsPicker.setOptionsSelectListener(new OptionsPicker.OnOptionsSelectedListener()
                 {
                     @Override
-                    public void onOptionsSelect(int position1, int position2, int position3, View v)
+                    public void onOptionsSelected(int position1, int option2, int options3, View v)
                     {
                         Log.e("DataPicker", list.get(position1));
                     }
-                }).setColor(Color.parseColor("#ff0000")).build();
-                optionsPickerView.setPicker(list);
-                optionsPickerView.show();
+                });
+                optionsPicker.setOptions1Items(list);
+                optionsPicker.setColor(Color.parseColor("#ff0000"));
+                optionsPicker.setTextSize(16);
+                optionsPicker.show();
             }
         });
     }
 
     private void initViews()
     {
-        button_pickTime = (Button) findViewById(R.id.button_pickTime);
-        button_pickOptions = (Button) findViewById(R.id.button_pickOptions);
+        button_pickTime = findViewById(R.id.button_pickTime);
+        button_pickOptions = findViewById(R.id.button_pickOptions);
     }
 }

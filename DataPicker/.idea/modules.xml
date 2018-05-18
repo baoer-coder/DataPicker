@@ -3,8 +3,11 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/DataPicker.iml" filepath="$PROJECT_DIR$/DataPicker.iml" />
+      <module fileurl="file://E:\AndroidStudioWorkSpace\DataPicker\DataPicker\DataPicker.iml" filepath="E:\AndroidStudioWorkSpace\DataPicker\DataPicker\DataPicker.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
+      <module fileurl="file://E:\AndroidStudioWorkSpace\DataPicker\DataPicker\app\app.iml" filepath="E:\AndroidStudioWorkSpace\DataPicker\DataPicker\app\app.iml" />
       <module fileurl="file://$PROJECT_DIR$/datapickerlib/datapickerlib.iml" filepath="$PROJECT_DIR$/datapickerlib/datapickerlib.iml" />
+      <module fileurl="file://E:\AndroidStudioWorkSpace\DataPicker\DataPicker\datapickerlib\datapickerlib.iml" filepath="E:\AndroidStudioWorkSpace\DataPicker\DataPicker\datapickerlib\datapickerlib.iml" />
     </modules>
   </component>
 </project>
