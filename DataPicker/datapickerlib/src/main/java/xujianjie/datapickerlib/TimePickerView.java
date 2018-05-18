@@ -20,11 +20,9 @@ public class TimePickerView extends BasePickerView implements View.OnClickListen
     public enum Type
     {
         ALL, YEAR_MONTH_DAY, HOURS_MINS, MONTH_DAY_HOUR_MIN, YEAR_MONTH
-    } // 五种选择模式，年月日时分秒，年月日，时分，月日时分，年月
+    }
 
-    WheelTime wheelTime; //自定义控件
-    private Button btnSubmit, btnCancel; //确定、取消按钮
-    private TextView tvTitle;//标题
+    private WheelTime wheelTime; //自定义控件
     private OnTimeSelectListener timeSelectListener;//回调接口
     private int gravity = Gravity.CENTER;//内容显示位置 默认居中
     private TimePickerView.Type type;// 显示类型
@@ -45,7 +43,7 @@ public class TimePickerView extends BasePickerView implements View.OnClickListen
     private int color = Color.parseColor("#65a5ff");
 
     //构造方法
-    public TimePickerView(Builder builder)
+    TimePickerView(Builder builder)
     {
         super(builder.context);
         this.timeSelectListener = builder.timeSelectListener;
@@ -166,11 +164,11 @@ public class TimePickerView extends BasePickerView implements View.OnClickListen
         LayoutInflater.from(context).inflate(R.layout.pickerview_time, contentContainer);
 
         //顶部标题
-        tvTitle = (TextView) findViewById(R.id.tvTitle);
+        TextView tvTitle = (TextView) findViewById(R.id.tvTitle);
 
         //确定和取消按钮
-        btnSubmit = (Button) findViewById(R.id.btnSubmit);
-        btnCancel = (Button) findViewById(R.id.btnCancel);
+        Button btnSubmit = (Button) findViewById(R.id.btnSubmit);
+        Button btnCancel = (Button) findViewById(R.id.btnCancel);
 
         btnSubmit.setTag(TAG_SUBMIT);
         btnCancel.setTag(TAG_CANCEL);
