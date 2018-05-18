@@ -1,4 +1,4 @@
-# DataPicker
+﻿# DataPicker
 日期选项选择器
 
 allprojects {
@@ -8,5 +8,5 @@ allprojects {
 }
 
 dependencies {
-    compile 'xujianjie:datapicker:1.0.0'
+    compile 'xujianjie:datapicker:1.1.0'
 }
